@@ -7,6 +7,10 @@ int number = int.Parse(Console.ReadLine());
 
 string[] array = GetArray(number);
 PrintArray(array);
+Console.WriteLine();
+
+string[] finalArray = LittleArray(array);
+PrintArray(finalArray);
 
 //Метод создания массива
 string[] GetArray(int length)
@@ -15,7 +19,7 @@ string[] GetArray(int length)
 
     for (int i = 0; i < array.Length; i++)
     {
-        Console.Write($"Введите {i + 1} значение массива: ");
+        Console.Write($"Введите {i + 1}-е значение массива: ");
         string userUnswer = Console.ReadLine();
         array[i] = userUnswer;
     }
@@ -26,6 +30,22 @@ void PrintArray(string[] array)
 {
     for (int i = 0; i < array.Length; i++)
     {
-        Console.WriteLine(array[i]);
+        Console.Write($"{array[i]} ");
     }
+}
+//Метод создания нового массива с ограничением по максимальному количеству знаков в каждом элементе
+string[] LittleArray(string[] array)
+{
+    string[] newArray = new string[array.Length];
+    int count = 0;
+    int minNumber = 3;  //Максимальное количество знаков в элементах нового массива
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (minNumber >= array[i].Length)
+        {
+            newArray[count] = array[i];
+            count++;
+        }
+    }
+    return newArray;
 }
